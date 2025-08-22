@@ -1,10 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/app/_lib/prisma";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
 
   if (req.method === "DELETE") {
