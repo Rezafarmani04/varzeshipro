@@ -3,12 +3,9 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: NextRequest, context: any) {
   try {
-    const productId = parseInt(params.id);
+    const productId = parseInt(context.params.id);
 
     if (isNaN(productId)) {
       return NextResponse.json({ error: "شناسه معتبر نیست" }, { status: 400 });
