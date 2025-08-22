@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model SpecialProduct {
@@ -28,72 +29,67 @@ model Brand {
 }
 
 model Testimonial {
-  id        Int     @id @default(autoincrement())
-  name      String
-  role      String
-  avatar    String
-  comment   String
-  rating    Int
-  product   String
-  date      DateTime
-  verified  Boolean
+  id       Int      @id @default(autoincrement())
+  name     String
+  role     String
+  avatar   String
+  comment  String
+  rating   Int
+  product  String
+  date     DateTime
+  verified Boolean
 }
 
 model BlogPost {
-  id        Int      @id @default(autoincrement())
-  title     String
-  excerpt   String
-  image     String
-  date      DateTime     
-  category  String
-  readTime  String
-  author    String
-  views     Int
-  tags      String[]   
+  id       Int      @id @default(autoincrement())
+  title    String
+  excerpt  String
+  image    String
+  date     DateTime
+  category String
+  readTime String
+  author   String
+  views    Int
+  tags     String[]
 }
 
-
 model OTP {
-  id         String   @id @default(uuid())
-  code       String
-  userId     String
-  user       User     @relation(fields: [userId], references: [id])
-  expiresAt  DateTime
-  used       Boolean  @default(false)
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  code      String
+  userId    String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
 }
 
-
 model User {
-  id         String     @id @default(uuid())
-  name       String
-  email      String     @unique
-  password   String
-  verified   Boolean    @default(false)
-  resetTokens   PasswordResetToken[]
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-
-  cartItems      CartItem[]
-  otps       OTP[]
-  favorites  Favorite[]
+  id          String               @id @default(uuid())
+  name        String
+  email       String               @unique
+  password    String
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+  verified    Boolean              @default(false)
+  cartItems   CartItem[]
+  favorites   Favorite[]
+  otps        OTP[]
+  resetTokens PasswordResetToken[]
 }
 
 model PasswordResetToken {
-  id         String   @id @default(uuid())
-  tokenHash  String   @unique
-  userId     String
-  user       User     @relation(fields: [userId], references: [id])
-  expiresAt  DateTime
-  used       Boolean  @default(false)
+  id        String   @id @default(uuid())
+  tokenHash String   @unique
+  userId    String
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@index([tokenHash])
 }
-
-
 
 model Product {
   id             Int        @id @default(autoincrement())
@@ -105,50 +101,39 @@ model Product {
   rating         Float
   reviewsCount   Int
   image          String
-  stock          Int?
-  description    String?
-  specifications Json?
-  features       String[]
-  colors         String[]
-  brand          String?
-  comments       String[]
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
+  colors         String[]
+  description    String?
+  features       String[]
+  specifications Json?
+  stock          Int?
+  brand          String?
+  comments       String[]
   cartItems      CartItem[]
-
   favorites      Favorite[]
 }
 
 model Favorite {
-  id         String   @id @default(uuid())
-  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String
-  product    Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  productId  Int
-  createdAt  DateTime @default(now())
+  id        String   @id @default(uuid())
+  userId    String
+  productId Int
+  createdAt DateTime @default(now())
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, productId]) // جلوگیری از ثبت تکراری
+  @@unique([userId, productId])
 }
 
 model CartItem {
-  id         Int      @id @default(autoincrement())
-  userId     String
-  productId  Int
-  quantity   Int      @default(1)
-  size       String?
-  color      String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
-  user    User    @relation(fields: [userId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  id        Int      @id @default(autoincrement())
+  userId    String
+  productId Int
+  quantity  Int      @default(1)
+  size      String?
+  color     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  product   Product  @relation(fields: [productId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
-
-
-
-
-
-
-
-
-

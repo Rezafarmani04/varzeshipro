@@ -22,7 +22,6 @@ type BallItem = {
 export default function SportBalls() {
   const [balls, setBalls] = useState<BallItem[]>([]);
   const [brands, setBrands] = useState<string[]>([]);
-  const [selectedSport, setSelectedSport] = useState("همه");
   const [selectedBrand, setSelectedBrand] = useState("همه");
   const [loading, setLoading] = useState(true);
 
@@ -51,9 +50,8 @@ export default function SportBalls() {
   }, []);
 
   const filteredBalls = balls.filter((ball) => {
-    const sportMatch = selectedSport === "همه" || ball.sport === selectedSport;
     const brandMatch = selectedBrand === "همه" || ball.brand === selectedBrand;
-    return sportMatch && brandMatch;
+    return brandMatch;
   });
 
   if (loading) {
@@ -119,12 +117,6 @@ export default function SportBalls() {
                 <h2 className="text-2xl font-bold">
                   توپ‌های ورزشی ({filteredBalls.length} محصول)
                 </h2>
-                <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white pr-8">
-                  <option>محبوب‌ترین</option>
-                  <option>قیمت کم به زیاد</option>
-                  <option>قیمت زیاد به کم</option>
-                  <option>جدیدترین</option>
-                </select>
               </div>
 
               {loading ? (

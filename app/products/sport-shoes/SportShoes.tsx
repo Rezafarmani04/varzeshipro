@@ -140,12 +140,6 @@ export default function SportShoes() {
                 <h2 className="text-2xl font-bold">
                   کفش‌های ورزشی ({filteredShoes.length} محصول)
                 </h2>
-                <select className="px-4 py-2 border border-gray-300 rounded-lg bg-white pr-8">
-                  <option>محبوب‌ترین</option>
-                  <option>قیمت کم به زیاد</option>
-                  <option>قیمت زیاد به کم</option>
-                  <option>جدیدترین</option>
-                </select>
               </div>
 
               {loading ? (
