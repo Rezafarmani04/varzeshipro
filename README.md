@@ -1,3 +1,38 @@
+# 🏋️‍♂️ Sporty Store
+
+An e-commerce platform built for a sports store with modern technologies.  
+This project is developed using **Next.js**, **Prisma**, and **PostgreSQL** to provide a robust and scalable shopping experience.
+
+---
+
+## ✨ Features
+- 🔑 **Authentication System**  
+  - Sign Up / Login  
+  - Password Recovery via Email  
+
+- 🛒 **Shopping Experience**  
+  - Add to Cart  
+  - Add to Favorites (Wishlist)  
+  - Global Search across products
+  - Product reviews & ratings
+  - Customers comments about services
+  - ژ
+  - ژعسفخئث
+- 📱 **Responsive Design**  
+  - Optimized for desktop, tablet, and mobile  
+
+---
+
+## 🛠 Tech Stack
+- **Frontend:** Next.js (React), Tailwind CSS  
+- **Backend:** Next.js API routes, Prisma  
+- **Database:** PostgreSQL  
+- **Auth & Security:** JWT / Email-based recovery  
+
+---
+
+## 🚀 Getting Started
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
