@@ -16,15 +16,14 @@ This project is developed using **Next.js**, **Prisma**, and **PostgreSQL** to p
   - Global Search across products
   - Product reviews & ratings
   - Customers comments about services
-  - ژ
-  - ژعسفخئث
+ 
 - 📱 **Responsive Design**  
   - Optimized for desktop, tablet, and mobile  
 
 ---
 
 ## 🛠 Tech Stack
-- **Frontend:** Next.js (React), Tailwind CSS  
+- **Frontend:** Next.js (React), TypeScript, Tailwind CSS  
 - **Backend:** Next.js API routes, Prisma  
 - **Database:** PostgreSQL  
 - **Auth & Security:** JWT / Email-based recovery  
